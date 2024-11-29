@@ -1,0 +1,1 @@
+This file contains information that I want GitHub Copilot to reference
