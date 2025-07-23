@@ -1,7 +1,9 @@
 import './globals.css' 
 import type { Metadata } from 'next' 
 import Header from './components/layout/Header' 
-import Footer from './components/layout/Footer' 
+import Footer from './components/layout/Footer'
+import { ChatProvider } from './contexts/ChatContext'
+import ChatWidget from './components/chat/ChatWidget' 
 
 export const metadata: Metadata = { 
   title: 'Zava Retail Store', 
@@ -16,11 +18,14 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
         <body> 
-            <div className="flex flex-col min-h-screen"> 
-                <Header /> 
-                <main className="flex-grow">{children}</main> 
-                <Footer /> 
-            </div> 
+            <ChatProvider>
+                <div className="flex flex-col min-h-screen"> 
+                    <Header /> 
+                    <main className="flex-grow">{children}</main> 
+                    <Footer /> 
+                </div> 
+                <ChatWidget />
+            </ChatProvider>
         </body> 
     </html>
   ) 
