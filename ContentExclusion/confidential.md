@@ -1,1 +1,0 @@
-This file contains information that I want to exclude from GitHub Copilot.
