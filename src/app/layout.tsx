@@ -1,10 +1,9 @@
 import './globals.css' 
 import type { Metadata } from 'next' 
-import { Inter } from 'next/font/google' 
 import Header from './components/layout/Header' 
-import Footer from './components/layout/Footer' 
-
-const inter = Inter({ subsets: ['latin'] }) 
+import Footer from './components/layout/Footer'
+import { ChatProvider } from './contexts/ChatContext'
+import ChatWidget from './components/chat/ChatWidget' 
 
 export const metadata: Metadata = { 
   title: 'Zava Retail Store', 
@@ -18,12 +17,15 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
       <link rel="icon" href="/zava.png" type="image/svg+xml" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-        <body className={inter.className}> 
-            <div className="flex flex-col min-h-screen"> 
-                <Header /> 
-                <main className="flex-grow">{children}</main> 
-                <Footer /> 
-            </div> 
+        <body> 
+            <ChatProvider>
+                <div className="flex flex-col min-h-screen"> 
+                    <Header /> 
+                    <main className="flex-grow">{children}</main> 
+                    <Footer /> 
+                </div> 
+                <ChatWidget />
+            </ChatProvider>
         </body> 
     </html>
   ) 
