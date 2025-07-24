@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useReducer, useCallback } from 'react';
-import { Message, ChatState, ChatContextType } from '../types/chat';
+import { Message, ChatState, ChatContextType, Attachment } from '../types/chat';
 
 const initialState: ChatState = {
   messages: [],
@@ -78,13 +78,14 @@ const ChatContext = createContext<ChatContextType | undefined>(undefined);
 export function ChatProvider({ children }: { children: React.ReactNode }) {
   const [chatState, dispatch] = useReducer(chatReducer, initialState);
 
-  const sendMessage = useCallback(async (content: string) => {
+  const sendMessage = useCallback(async (content: string, attachments?: Attachment[]) => {
     const userMessage: Message = {
       id: Date.now().toString(),
       content,
       sender: 'user',
       timestamp: new Date(),
       status: 'sending',
+      attachments,
     };
 
     dispatch({ type: 'SEND_MESSAGE_START', payload: { message: userMessage } });
@@ -168,16 +169,21 @@ export function useChat() {
 }
 
 // Mock AI response generator
-function generateAIResponse(_userMessage: string): string {
+function generateAIResponse(userMessage: string): string {
   const responses = [
-    "I'd be happy to help you with that! What specific information are you looking for?",
-    "That's a great question! Based on your needs, I recommend checking out our featured products section.",
-    "I understand you're looking for home improvement solutions. Can you tell me more about your project?",
-    "Our AI assistants are here to help! Let me find the best options for you.",
-    "Thank you for your question! I can definitely help you find the right products for your home improvement project.",
-    "I see you're interested in our services. What type of room or area are you working on?",
-    "That's an excellent choice! Our store offers high-quality products for all your home improvement needs.",
+    `I'd be happy to help you with that! What specific information are you looking for?`,
+    `That's a great question! Based on your needs, I recommend checking out our featured products section.`,
+    `I understand you're looking for home improvement solutions. Can you tell me more about your project?`,
+    `Our AI assistants are here to help! Let me find the best options for you.`,
+    `Thank you for your question! I can definitely help you find the right products for your home improvement project.`,
+    `I see you're interested in our services. What type of room or area are you working on?`,
+    `That's an excellent choice! Our store offers high-quality products for all your home improvement needs.`,
   ];
+  
+  // Add some context-based responses
+  if (userMessage.toLowerCase().includes('image') || userMessage.toLowerCase().includes('picture')) {
+    return `I can see you've shared an image! That's really helpful for understanding your project better. Based on what I can see, I'd recommend exploring our related product categories.`;
+  }
   
   return responses[Math.floor(Math.random() * responses.length)];
 }

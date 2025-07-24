@@ -59,15 +59,43 @@ export default function ChatMessage({ message }: ChatMessageProps) {
       )}
 
       <div className={`flex flex-col max-w-xs ${isUser ? 'items-end' : 'items-start'}`}>
-        <div
-          className={`rounded-2xl px-4 py-3 shadow-sm ${
-            isUser
-              ? 'bg-teal-600 text-white rounded-br-sm'
-              : 'bg-white text-gray-900 rounded-tl-sm border border-gray-200'
-          }`}
-        >
-          <p className="text-sm whitespace-pre-wrap break-words">{message.content}</p>
-        </div>
+        {/* Image attachments */}
+        {message.attachments && message.attachments.length > 0 && (
+          <div className={`mb-2 ${isUser ? 'flex justify-end' : ''}`}>
+            <div className="grid gap-1 max-w-xs">
+              {message.attachments.map((attachment) => (
+                <div key={attachment.id} className="relative">
+                  <img
+                    src={attachment.url}
+                    alt={attachment.name}
+                    className="max-w-full h-auto rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow"
+                    style={{ maxHeight: '200px' }}
+                    onClick={() => {
+                      // Open image in new tab for full size view
+                      window.open(attachment.url, '_blank');
+                    }}
+                  />
+                  <div className="absolute bottom-1 left-1 right-1 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded truncate">
+                    {attachment.name}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Text message bubble (only show if there's content) */}
+        {message.content && (
+          <div
+            className={`rounded-2xl px-4 py-3 shadow-sm ${
+              isUser
+                ? 'bg-teal-600 text-white rounded-br-sm'
+                : 'bg-white text-gray-900 rounded-tl-sm border border-gray-200'
+            }`}
+          >
+            <p className="text-sm whitespace-pre-wrap break-words">{message.content}</p>
+          </div>
+        )}
         
         <div className={`flex items-center mt-1 space-x-1 text-xs text-gray-500 ${isUser ? 'flex-row-reverse space-x-reverse' : ''}`}>
           <span>{formatTime(message.timestamp)}</span>
