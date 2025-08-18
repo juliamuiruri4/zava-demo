@@ -1,0 +1,3 @@
+|ID | Scenario |  Github Copilot Feature | Application |
+|----------|----------|-----------------------|------------------|
+| 1 | No one wants to use search anymore – so Kian’s team has been asked to add chat interaction for users to query available products using natural language. |  GitHub Coding Agent | ![Assign a task to the copilot coding agent](/zava/assets/assign-feature-to-coding-agent.mp4) | 
