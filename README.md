@@ -1,0 +1,1 @@
+<img src="src/public/images/logo.svg" alt="Logo" width="150"/>
