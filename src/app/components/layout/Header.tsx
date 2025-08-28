@@ -16,11 +16,12 @@ export default function Header() {
                 </Link> 
                 
                 <nav className="hidden lg:flex space-x-8"> 
-                    <Link href="/products/paints" className="font-medium hover:text-yellow-300 transition-colors duration-200">Paint & Finishes</Link> 
-                    <Link href="/products/tools" className="font-medium hover:text-yellow-300 transition-colors duration-200">Hand Tools</Link> 
-                    <Link href="/products/home" className="font-medium hover:text-yellow-300 transition-colors duration-200">Lumber & Building material</Link> 
-                    <Link href="/services" className="font-medium hover:text-yellow-300 transition-colors duration-200">Plumbing</Link> 
-                    <Link href="/store" className="font-medium hover:text-yellow-300 transition-colors duration-200">Power Tools</Link> 
+                        <Link href="/products/flooring" className="font-medium hover:text-yellow-300 transition-colors duration-200">Flooring</Link>
+                        <Link href="/products/home-improvement" className="font-medium hover:text-yellow-300 transition-colors duration-200">Home Improvement</Link>
+                        <Link href="/products/paint-finishes" className="font-medium hover:text-yellow-300 transition-colors duration-200">Paint & Finishes</Link>
+                        <Link href="/products/power-tools" className="font-medium hover:text-yellow-300 transition-colors duration-200">Power Tools</Link>
+                        <Link href="/products/storage-organization" className="font-medium hover:text-yellow-300 transition-colors duration-200">Storage & Organization</Link>
+                        <Link href="/products/tools-hardware" className="font-medium hover:text-yellow-300 transition-colors duration-200">Tools & Hardware</Link>
                 </nav> 
 
                 <div className="flex items-center space-x-3"> 

@@ -1,0 +1,4 @@
+psycopg2-binary==2.9.9
+numpy==1.24.3
+# Moved to data folder
+# New path: data/requirements.txt
