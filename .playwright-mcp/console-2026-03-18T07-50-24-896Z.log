@@ -1,4 +1,0 @@
-[     602ms] [WARNING] Image with src "/logo.svg" was detected as the Largest Contentful Paint (LCP). Please add the "priority" property if this image is above the fold.
-Read more: https://nextjs.org/docs/api-reference/next/image#priority @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_445d8acf._.js:874
-[     685ms] [WARNING] Image with src "/images/interior-paints-1.png" was detected as the Largest Contentful Paint (LCP). Please add the "priority" property if this image is above the fold.
-Read more: https://nextjs.org/docs/api-reference/next/image#priority @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_445d8acf._.js:874
