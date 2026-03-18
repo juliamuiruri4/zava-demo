@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Header from './components/layout/Header' 
 import Footer from './components/layout/Footer'
 import { ChatProvider } from './contexts/ChatContext'
+import { CartProvider } from './contexts/CartContext'
 import ChatWidget from './components/chat/ChatWidget' 
 
 export const metadata: Metadata = { 
@@ -18,6 +19,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
         <body> 
+            <CartProvider>
             <ChatProvider>
                 <div className="flex flex-col min-h-screen"> 
                     <Header /> 
@@ -26,6 +28,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                 </div> 
                 <ChatWidget />
             </ChatProvider>
+            </CartProvider>
         </body> 
     </html>
   ) 

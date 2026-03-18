@@ -1,5 +1,10 @@
+'use client';
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
+import { useCart } from '../../contexts/CartContext'
+import { CartProduct } from '../../types/cart'
 
 const popularProducts = [
     {
@@ -33,6 +38,23 @@ const popularProducts = [
 ]
 
 export default function PopularProducts() {
+    const { addToCart } = useCart();
+    const [addedId, setAddedId] = useState<number | null>(null);
+
+    function handleAddToCart(product: typeof popularProducts[number]) {
+        const cartProduct: CartProduct = {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            link: product.link,
+            category: 'Home Improvement',
+        };
+        addToCart(cartProduct);
+        setAddedId(product.id);
+        setTimeout(() => setAddedId(null), 1500);
+    }
+
     return (
         <div className="py-16 bg-white">
             <div className="max-w-7xl mx-auto px-6">
@@ -101,22 +123,33 @@ export default function PopularProducts() {
                                         {product.price.toLocaleString()}
                                     </span>
                                     <button 
-                                        className="bg-teal-600 text-white p-3 rounded-lg hover:bg-teal-700 transition-colors duration-200 shadow-md"
-                                        aria-label="Add to cart"
+                                        onClick={() => handleAddToCart(product)}
+                                        className={`p-3 rounded-lg transition-all duration-200 shadow-md ${
+                                            addedId === product.id
+                                                ? 'bg-green-600 text-white'
+                                                : 'bg-teal-600 text-white hover:bg-teal-500'
+                                        }`}
+                                        aria-label={addedId === product.id ? `${product.name} added to cart` : `Add ${product.name} to cart`}
                                     >
-                                        <svg 
-                                            className="w-5 h-5" 
-                                            fill="none" 
-                                            stroke="currentColor" 
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path 
-                                                strokeLinecap="round" 
-                                                strokeLinejoin="round" 
-                                                strokeWidth={2} 
-                                                d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5m2.5-5v5m0-5H17m0 0v5" 
-                                            />
-                                        </svg>
+                                        {addedId === product.id ? (
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        ) : (
+                                            <svg 
+                                                className="w-5 h-5" 
+                                                fill="none" 
+                                                stroke="currentColor" 
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path 
+                                                    strokeLinecap="round" 
+                                                    strokeLinejoin="round" 
+                                                    strokeWidth={2} 
+                                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5m2.5-5v5m0-5H17m0 0v5" 
+                                                />
+                                            </svg>
+                                        )}
                                     </button>
                                 </div>
                             </div>
