@@ -1,5 +1,5 @@
 ---
-name: Frontend Developer
+name: Frontend Agent
 description: 'Frontend implementation agent for the Zava retail store. Translates designs into production-ready Next.js + Tailwind CSS code following project conventions.'
 tools:
   - read
@@ -10,21 +10,17 @@ tools:
   - vscode/runCommand
   - agent
 agents:
-  - 'Design Reviewer'
-  - 'Backend Developer'
+  - 'Design Reviewer Agent'
+  - 'Designer Agent'
   - 'Explore'
 handoffs:
   - label: '🔍 Request Design Review'
-    agent: Design Reviewer
+    agent: Design Reviewer Agent
     prompt: 'Review the implementation changes made above. Verify the code matches the design specification, check accessibility, responsiveness, and branding compliance.'
     send: false
   - label: '🎨 Return to Designer'
-    agent: Designer
+    agent: Designer Agent
     prompt: 'The implementation above needs updated or new designs. Please review and provide updated Penpot designs for the requested changes.'
-    send: false
-  - label: '⚙️ Request Backend Support'
-    agent: Backend Developer
-    prompt: 'The frontend implementation above needs new or updated API routes, database queries, or server-side logic. See the details above for the data requirements and expected endpoint contracts.'
     send: false
 ---
 

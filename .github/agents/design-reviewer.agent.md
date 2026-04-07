@@ -1,5 +1,5 @@
 ---
-name: Design Reviewer
+name: Design Reviewer Agent
 description: 'Reviews UI/UX designs and implementations for visual consistency, accessibility (WCAG AA), responsiveness, and adherence to branding guidelines.'
 tools:
   - read
@@ -10,20 +10,16 @@ tools:
   - vscode/runCommand
   - agent
 agents:
-  - 'Frontend Developer'
-  - 'Backend Developer'
+  - 'Designer Agent'
+  - 'Frontend Agent'
 handoffs:
   - label: '🎨 Return to Designer for Fixes'
-    agent: Designer
+    agent: Designer Agent
     prompt: 'The design review above identified issues that need to be addressed. Update the designs and implementation to resolve all critical and warning findings.'
     send: false
   - label: '🛠️ Hand Off to Frontend'
-    agent: Frontend Developer
+    agent: Frontend Agent
     prompt: 'The design has been reviewed and approved. Implement/update the code to match the approved design. See the review report above for any notes to address during implementation.'
-    send: false
-  - label: '✅ Hand Off to Backend'
-    agent: Backend Developer
-    prompt: 'The design has been reviewed and approved. Build the API routes, database queries, and server-side logic needed to support this feature. See the review report above for data requirements.'
     send: false
 ---
 

@@ -1,17 +1,17 @@
 ---
-name: Designer
+name: Designer Agent
 description: 'UI/UX Designer agent for the Zava retail store. Handles all design work using Penpot, validates implementations with integrated browser automation, and ensures designs match specifications.'
-tools: [vscode/extensions, vscode/getProjectSetupInfo, vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/runCommand, vscode/vscodeAPI, vscode/askQuestions, execute/getTerminalOutput, execute/awaitTerminal, execute/killTerminal, execute/createAndRunTask, execute/runNotebookCell, execute/testFailure, execute/runInTerminal, execute/runTests, read/terminalSelection, read/terminalLastCommand, read/getNotebookSummary, read/problems, read/readFile, read/readNotebookCellOutput, agent/runSubagent, browser/openBrowserPage, browser/navigate, browser/screenshot, browser/readPage, browser/click, browser/type, browser/hover, browser/drag, browser/handle_dialog, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/textSearch, search/usages, web/fetch, web/githubRepo, azure-mcp/search, penpot/execute_code, penpot/export_shape, penpot/high_level_overview, penpot/import_image, penpot/penpot_api_info, todo]
+tools: [vscode, execute, read, agent, edit, search, web, browser, 'penpot/*', azure-mcp/search, todo]
 agents:
-  - 'Design Reviewer'
-  - 'Frontend Developer'
+  - 'Design Reviewer Agent'
+  - 'Frontend Agent'
 handoffs:
   - label: '🔍 Request Design Review'
-    agent: Design Reviewer
+    agent: Design Reviewer Agent
     prompt: 'Review the design changes made above. Check for visual consistency, accessibility (WCAG AA), responsive behavior, and adherence to the project''s branding guidelines. Report any issues found.'
     send: false
   - label: '🛠️ Hand Off to Frontend'
-    agent: Frontend Developer
+    agent: Frontend Agent
     prompt: 'Implement the design specified above in code. Follow the project''s Next.js + Tailwind conventions. Ensure the implementation matches the design exactly — reference the Penpot designs and screenshots provided.'
     send: false
 ---
