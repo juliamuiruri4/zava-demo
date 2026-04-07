@@ -2,6 +2,10 @@
   "name": "zava-retail-store",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juliamuiruri4/zava-demo.git"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
