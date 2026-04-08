@@ -1,16 +1,29 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useChat } from '../../contexts/ChatContext';
+import { useChat, RateLimitError } from '../../contexts/ChatContext';
 import { Attachment } from '../../types/chat';
+
+const RATE_LIMIT_DISPLAY_MS = 2000;
 
 export default function ChatInput() {
   const { sendMessage, clearError } = useChat();
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [rateLimitMsg, setRateLimitMsg] = useState<string | null>(null);
   const [attachments, setAttachments] = useState<Attachment[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const rateLimitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Cleanup rate-limit timer on unmount
+  useEffect(() => {
+    return () => {
+      if (rateLimitTimerRef.current !== null) {
+        clearTimeout(rateLimitTimerRef.current);
+      }
+    };
+  }, []);
 
   // Auto-resize textarea
   const adjustTextareaHeight = () => {
@@ -106,7 +119,18 @@ export default function ChatInput() {
     try {
       await sendMessage(messageToSend, attachmentsToSend.length > 0 ? attachmentsToSend : undefined);
     } catch (error) {
-      console.error('Failed to send message:', error);
+      if (error instanceof RateLimitError) {
+        // Restore the message so the user doesn't lose their input
+        setMessage(messageToSend);
+        setAttachments(attachmentsToSend);
+        setRateLimitMsg(error.message);
+        if (rateLimitTimerRef.current !== null) {
+          clearTimeout(rateLimitTimerRef.current);
+        }
+        rateLimitTimerRef.current = setTimeout(() => setRateLimitMsg(null), RATE_LIMIT_DISPLAY_MS);
+      } else {
+        console.error('Failed to send message:', error);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -244,8 +268,12 @@ export default function ChatInput() {
         aria-label="Select image file"
       />
       
-      <div className="mt-2 text-xs text-gray-600 text-center">
-        Press Enter to send, Shift+Enter for new line
+      <div className="mt-2 text-xs text-center">
+        {rateLimitMsg ? (
+          <span className="text-red-500">{rateLimitMsg}</span>
+        ) : (
+          <span className="text-gray-600">Press Enter to send, Shift+Enter for new line</span>
+        )}
       </div>
     </div>
   );
