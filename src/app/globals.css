@@ -1,27 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+
+  /* Primary: Deep Teal */
+  --color-primary: #1A5F7A;
+  --color-primary-light: #2A8FB0;
+  --color-primary-dark: #0F3A4A;
+
+  /* Secondary: Warm Terracotta */
+  --color-secondary: #E27D60;
+  --color-secondary-light: #F49880;
+  --color-secondary-dark: #C45A40;
+
+  /* Accent: Gold/Amber */
+  --color-accent: #FFC857;
+  --color-accent-light: #FFD87A;
+  --color-accent-dark: #E6AE32;
+
+  /* Neutrals */
+  --color-neutral-white: #FFFFFF;
+  --color-neutral-off-white: #F8F9FA;
+  --color-neutral-light-gray: #E9ECEF;
+  --color-neutral-medium-gray: #ADB5BD;
+  --color-neutral-dark-gray: #343A40;
+  --color-neutral-charcoal: #212529;
+
+  /* Semantic */
+  --color-success: #28A745;
+  --color-error: #DC3545;
+  --color-warning: #FFC107;
+  --color-info: #17A2B8;
+
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-background);
+  color: var(--color-foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
