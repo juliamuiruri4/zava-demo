@@ -1,7 +1,16 @@
 'use client';
 
-import React, { createContext, useContext, useReducer, useCallback } from 'react';
+import React, { createContext, useContext, useReducer, useCallback, useRef } from 'react';
 import { Message, ChatState, ChatContextType, Attachment } from '../types/chat';
+
+const RATE_LIMIT_MS = 1000;
+
+export class RateLimitError extends Error {
+  constructor() {
+    super('Please wait a moment before sending another message.');
+    this.name = 'RateLimitError';
+  }
+}
 
 const initialState: ChatState = {
   messages: [],
@@ -77,10 +86,17 @@ const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
 export function ChatProvider({ children }: { children: React.ReactNode }) {
   const [chatState, dispatch] = useReducer(chatReducer, initialState);
+  const lastSentAtRef = useRef<number>(0);
 
   const sendMessage = useCallback(async (content: string, attachments?: Attachment[]) => {
+    const now = Date.now();
+    if (now - lastSentAtRef.current < RATE_LIMIT_MS) {
+      throw new RateLimitError();
+    }
+    lastSentAtRef.current = now;
+
     const userMessage: Message = {
-      id: Date.now().toString(),
+      id: now.toString(),
       content,
       sender: 'user',
       timestamp: new Date(),
