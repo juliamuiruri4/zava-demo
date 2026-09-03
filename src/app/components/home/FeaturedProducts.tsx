@@ -38,11 +38,13 @@ export default function FeaturedProducts() {
             <div className="max-w-7xl mx-auto px-6"> 
                 {/* Category Navigation */}
                 <div className="mb-8">
-                    <div className="flex flex-wrap justify-center gap-1 rounded-2xl bg-white p-1 shadow-sm sm:inline-flex sm:rounded-full">
+                    <div className="flex flex-wrap justify-center gap-1 rounded-2xl bg-white p-1 shadow-sm sm:inline-flex sm:flex-nowrap sm:rounded-full">
                         {categories.map(category => (
                             <button 
                                 key={category.id}
-                                className={`rounded-full px-3 py-2 text-xs font-medium transition-all duration-200 sm:px-6 sm:py-3 sm:text-sm ${
+                                type="button"
+                                aria-pressed={category.active}
+                                className={`min-h-11 rounded-full px-3 py-2 text-xs font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 sm:px-6 sm:py-3 sm:text-sm ${
                                     category.active 
                                         ? 'bg-teal-600 text-white shadow-md' 
                                         : 'text-gray-600 hover:text-gray-900'
