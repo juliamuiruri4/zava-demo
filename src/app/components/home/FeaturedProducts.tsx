@@ -37,12 +37,14 @@ export default function FeaturedProducts() {
         <div className="py-8 bg-gray-50"> 
             <div className="max-w-7xl mx-auto px-6"> 
                 {/* Category Navigation */}
-                <div className="flex justify-center mb-8">
-                    <div className="inline-flex bg-white rounded-full p-1 shadow-sm">
+                <div className="mb-8">
+                    <div className="flex flex-wrap justify-center gap-1 rounded-2xl bg-white p-1 shadow-sm sm:inline-flex sm:flex-nowrap sm:rounded-full">
                         {categories.map(category => (
                             <button 
                                 key={category.id}
-                                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
+                                type="button"
+                                aria-pressed={category.active}
+                                className={`min-h-11 rounded-full px-3 py-2 text-xs font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 sm:px-6 sm:py-3 sm:text-sm ${
                                     category.active 
                                         ? 'bg-teal-600 text-white shadow-md' 
                                         : 'text-gray-600 hover:text-gray-900'
@@ -55,10 +57,9 @@ export default function FeaturedProducts() {
                 </div>
                 
                 {/* Products Grid */}
-                <div className="flex justify-center">
-                    <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide max-w-fit"> 
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {products.map(product => (
-                            <div key={product.id} className="flex-shrink-0 w-80 group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"> 
+                            <div key={product.id} className="group w-full overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                                 <Link href={product.link}> 
                                     <div className="relative h-64 overflow-hidden"> 
                                         <Image 
@@ -78,8 +79,7 @@ export default function FeaturedProducts() {
                                     </div> 
                                 </Link> 
                             </div> 
-                        ))} 
-                    </div>
+                        ))}
                 </div> 
             </div> 
         </div>
