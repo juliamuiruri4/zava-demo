@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 className="font-semibold text-lg mb-4 text-gray-900">About US</h3>
+                    <h3 className="font-semibold text-lg mb-4 text-gray-900">About us</h3>
                     <ul className="space-y-2">
                         <li><Link href="/about" className="text-gray-700 hover:text-gray-900">Store Address</Link></li>
                         <li><Link href="/about/office" className="text-gray-700 hover:text-gray-900">Corporate Office</Link></li>
@@ -23,7 +23,7 @@ export default function Footer() {
                     </ul>
                 </div>
                 <div>
-                    <h3 className="font-semibold text-lg mb-4 text-gray-900">Delivery and Tracking</h3>
+                    <h3 className="font-semibold text-lg mb-4 text-gray-900">Delivery and tracking</h3>
                     <ul className="space-y-2">
                         <li><Link href="/delivery" className="text-gray-700 hover:text-gray-900">Tracking</Link></li>
                         <li><Link href="/services/book" className="text-gray-700 hover:text-gray-900">Book Services</Link></li>
@@ -32,7 +32,7 @@ export default function Footer() {
                     </ul>
                 </div>
                 <div>
-                    <h3 className="font-semibold text-lg mb-4 text-gray-900">Terms And Condition</h3>
+                    <h3 className="font-semibold text-lg mb-4 text-gray-900">Terms and conditions</h3>
                     <ul className="space-y-2">
                         <li><Link href="/terms" className="text-gray-700 hover:text-gray-900">Terms of Use</Link></li>
                         <li><Link href="/billing" className="text-gray-700 hover:text-gray-900">Billing And Payments</Link></li>
