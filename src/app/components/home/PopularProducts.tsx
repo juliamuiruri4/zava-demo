@@ -89,10 +89,11 @@ export default function PopularProducts() {
                                 </h3>
                                 
                                 {/* More Info Button */}
-                                <Link href={product.link}>
-                                    <button className="w-full bg-gray-100 text-gray-700 font-medium py-3 px-4 rounded-lg hover:bg-gray-200 transition-colors duration-200 mb-4">
-                                        More Info
-                                    </button>
+                                <Link
+                                    href={product.link}
+                                    className="block w-full text-center bg-gray-100 text-gray-700 font-medium py-3 px-4 rounded-lg hover:bg-gray-200 transition-colors duration-200 mb-4"
+                                >
+                                    More Info
                                 </Link>
 
                                 {/* Price and Cart */}
