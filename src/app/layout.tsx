@@ -14,7 +14,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
   return ( 
     <html lang="en"> 
     <head>
-      <link rel="icon" href="/zava.png" type="image/svg+xml" />
+      <link rel="icon" href="/zava.png" type="image/png" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
         <body> 
